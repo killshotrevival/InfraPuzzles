@@ -1,0 +1,1 @@
+{{- $_ := required "API Key is a required value" .Values.secret.apiKey}}

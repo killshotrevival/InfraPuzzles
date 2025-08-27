@@ -1,0 +1,80 @@
+# Default values for example-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: docker.io/example/example
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "v0.0.1"
+
+imagePullSecrets: []
+# - name: "dockerhub-pull"
+nameOverride: "example"
+fullnameOverride: "example"
+
+
+serviceAccountName: default
+
+secret:
+  name: example-secrets
+  apiKey: ""
+podAnnotations:
+  checksum/config: '{{ include ("example-chart.secret") . | sha256sum }}'
+podLabels: {}
+
+podSecurityContext:  
+  fsGroup: 10001      # Set to match runAsGroup for volume access
+
+securityContext:     
+  capabilities:
+    drop:
+      - ALL          
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 10001
+  runAsGroup: 10001   
+  allowPrivilegeEscalation: false
+  
+service:
+  port: 4317
+
+httpService:
+  port: 4318
+
+resources: {}
+  # If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+volumeClaimTemplate:
+  name: example-message
+  storage: 1Gi
+
+
+# Additional volumes on the output Deployment definition.
+volumes: []
+# - name: base-config
+#   configMap:
+#     name: base-config
+#     items:
+#     - key: config_base.yaml
+#       path: config_base.yaml
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts:
+- name: example-message
+  mountPath: /var/lib/otelcol/file_storage
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
