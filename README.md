@@ -1,7 +1,8 @@
 # InfraPuzzles
 
 [![Terraform](https://img.shields.io/badge/Terraform-7B42BC?logo=terraform&logoColor=white)](https://www.terraform.io/)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Peeyush%20Tyagi-blue?logo=linkedin)](https://www.linkedin.com/in/peeyush-tyagi)
+![Kubernetes](https://img.shields.io/badge/kubernetes-326CE5?&style=plastic&logo=kubernetes&logoColor=white)
+![Helm](https://img.shields.io/badge/Helm-0F1689?style=flat&logo=helm)
 
 A collection of advanced IaC code examples tackling real-world SRE challenges. These aren't your basic "hello world" setups—they're puzzles drawn from production-scale problems like autoscaling clusters, zero-downtime migrations, and secure networking. Perfect for SREs, DevOps engineers, or anyone leveling up their Infrastructure as Code (IaC) game.
 
