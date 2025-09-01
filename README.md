@@ -17,9 +17,13 @@ As an SRE with experience scaling cloud systems on GCP and AWS, I've encountered
 
 Each example includes explanations, architecture diagrams (where relevant), and setup instructions to make them easy to adapt.
 
-## Puzzles (Examples)
+## Puzzles 
 
-Here are some of the advanced Terraform puzzles included. Each is in its own directory with a dedicated README for details.
+- [FinOps](./finOps/): Financial analysis of the operations
+- [Helm](./helm/): Interesting Helm Examples
+    - [Rollout Restart](./helm/rollout-restart/)
+- [Istio](./istio/): Intersting Istio Deployments
+    - [Multi Cluster Connect](./istio/multiClusterConnect/)
 
 ## Contributing
 
