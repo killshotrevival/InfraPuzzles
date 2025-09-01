@@ -1,0 +1,26 @@
+# Secondary cliuster hosting only the required services and will connect to services deployed in primarmy cluster for all other work
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  # Remote profile is used to install istio in the secondary cluster and connect to the primary cluster
+  # This will only deploy, east-west gateway in the secondary cluster and the istiod should be already deployed in the primary cluster
+  profile: remote
+  values:
+    cni:
+      cniBinDir: /home/kubernetes/bin
+    meshConfig:
+      defaultConfig:
+        holdApplicationUntilProxyStarts: true
+    istiodRemote:
+      injectionPath: /inject/cluster/<Primary cluster name>/net/<Primary cluster network>
+    global:
+      # Remote pilot address is the external IP of the istiod service in the primary cluster
+      remotePilotAddress: <Primary cluster istiod service external IP>
+      # Mesh ID which will be used to identify the mesh in the network
+      meshID: production-mesh
+      multiCluster:
+        # Name of the cluster if not given while configuring will default to `Kubernetes`
+        # Make sure this is not same as the primary cluster name
+        # This small confusion have caused a great pain for us in past :/
+        clusterName: <Primary cluster name>
+      network: <Primary cluster network>

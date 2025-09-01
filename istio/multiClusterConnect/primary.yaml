@@ -1,0 +1,22 @@
+## Primary cluster hosting all the important services, that all other secondary clusters will want to connect with.
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  values:
+    cni:
+      cniBinDir: /home/kubernetes/bin
+    meshConfig:
+      defaultConfig:
+        holdApplicationUntilProxyStarts: true
+    global:
+      # Mesh ID which will be used to identify the mesh in the network
+      meshID: production-mesh
+      multiCluster:
+        # Name of the cluster if not given while configuring will default to `Kubernetes`
+        # This small confusion have caused a great pain for us in past :/
+        clusterName: Kubernetes
+      # Name of the network as you have given while configuring `topology.istio.io` label using the below command
+      # kubectl label namespace istio-system topology.istio.io/network=production-vpc
+      network: production-vpc
+      # This will allow the istiod service to accept connection from external sources like secondary clusters
+      externalIstiod: true
