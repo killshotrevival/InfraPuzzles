@@ -24,6 +24,8 @@ Each example includes explanations, architecture diagrams (where relevant), and 
     - [Rollout Restart](./helm/rollout-restart/)
 - [Istio](./istio/): Intersting Istio Deployments
     - [Multi Cluster Connect](./istio/multiClusterConnect/)
+- [Kubernetes](./k8s/): Interesting kubernetes workings
+    - [Finalizers in Namespace](./k8s/finalisingNamespace.md)
 
 ## Contributing
 
